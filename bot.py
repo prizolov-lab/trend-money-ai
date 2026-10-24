@@ -3,12 +3,13 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-TELEGRAM_TOKEN = os.getenv("8545027661:AAG8S4TyiA6opXKivFwVdpSY5ROLWyqFjnY")
-RAILWAY_URL = os.getenv("https://railway.com/project/51aa0483-ddf7-49c1-87a7-9504872bb295?")  # Railway дает URL проекта
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
+# Публичный адрес сервиса на Railway (домен приложения), например https://имя.up.railway.app
+RAILWAY_URL = os.getenv("RAILWAY_URL")
 PORT = int(os.getenv("PORT", 8080))
 
-print("TOKEN:", TELEGRAM_TOKEN)
-print("WEBHOOK URL:", RAILWAY_URL)
+if not TELEGRAM_TOKEN or not RAILWAY_URL:
+    raise RuntimeError("Задайте переменные окружения TELEGRAM_TOKEN и RAILWAY_URL")
 
 # Telegram imports
 from telegram import Update
